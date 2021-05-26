@@ -1,0 +1,24 @@
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka,http://localhost:8762/eureka,http://localhost:8763/eureka
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true #开启小写验证，默认feign根据服务名查找都是用的全大写
+      default-filters:
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+      - AddResponseHeader=X-Response-Default-Red, Default-Blue
+      - PrefixPath=/httpbin
+      routes:
+      - id: serviceConsumerRoute
+        uri: lb://service-consumer
+        predicates:
+        - Path=/serviceConsumer/**

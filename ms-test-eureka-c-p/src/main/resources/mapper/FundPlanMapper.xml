@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.etoak.test.dao.FundPlanMapper">
+
+    <resultMap id="fundPlan" type="com.etoak.test.entity.FundPlan">
+        <result column="ZJJHCONF_SFMC" property="provName"></result>
+    </resultMap>
+
+    <select id="getProvInfoByCode" parameterType="String" resultMap="fundPlan">
+        SELECT ZJJHCONF_SFMC FROM ZJJHCONF WHERE ZJJHCONF_SFBH=#{provCode}
+    </select>
+</mapper>

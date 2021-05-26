@@ -1,0 +1,69 @@
+#*********通用配置 begin*********
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://server-node1:8761/eureka,http://server-node2:8762/eureka,http://server-node3:8763/eureka
+  server:
+    enable-self-preservation: false
+#*********通用配置 begin*********
+
+
+---
+
+
+#*********配置中心node1配置 begin*********
+server:
+  port: 8761
+
+spring:
+  config:
+    activate:
+      on-profile: node1
+
+eureka:
+  instance:
+    instance-id: eureka-server-node1:${server.port}
+    hostname: server-node1
+#*********配置中心node1配置 end*********
+
+
+---
+
+
+#*********配置中心node2配置 begin*********
+server:
+  port: 8762
+
+spring:
+  config:
+    activate:
+      on-profile: node2
+
+eureka:
+  instance:
+    instance-id: eureka-server-node2:${server.port}
+    hostname: server-node2
+#*********配置中心node2配置 end*********
+
+
+---
+
+
+#*********配置中心node3配置 begin*********
+server:
+  port: 8763
+
+spring:
+  config:
+    activate:
+      on-profile: node3
+
+eureka:
+  instance:
+    instance-id: eureka-server-node3:${server.port}
+    hostname: server-node3
+#*********配置中心node3配置 end*********
