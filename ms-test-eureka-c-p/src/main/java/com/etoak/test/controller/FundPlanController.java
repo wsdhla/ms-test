@@ -22,6 +22,9 @@ public class FundPlanController {
     @Value("${myapp.test.msg}")
     String msg;
 
+    @Value("${myapp.test.sleepTime}")
+    long sleepTime;
+
     @RequestMapping("/queryProvInfoByCode")
     public FundPlan queryProvInfo(String provCode) {
         /*FundPlan fundPlan = new FundPlan();
@@ -32,6 +35,15 @@ public class FundPlanController {
         FundPlan fundPlan = fundPlanService.queryProvInfoByCode(provCode);
         fundPlan.setPort(port);
         fundPlan.setMsg(msg);
+
+        try {
+            if ("8080".equals(port)) {
+                Thread.currentThread().sleep(sleepTime);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return fundPlan;
     }
 }

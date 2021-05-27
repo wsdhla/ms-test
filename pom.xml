@@ -15,5 +15,8 @@
         <module>ms-test-eureka-c-p</module>
         <module>ms-test-eureka-c-c</module>
         <module>ms-test-common</module>
+        <module>ms-test-gateway</module>
+        <module>ms-test-zuul</module>
+        <module>springmvc-rest</module>
     </modules>
 </project>
